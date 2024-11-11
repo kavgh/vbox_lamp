@@ -1,0 +1,38 @@
+- name: Install dependencies
+  ansible.builtin.dnf:
+    name: "{{ dependencies }}"
+    update_cache: true
+    state: present
+
+- name: Create tomcat group
+  ansible.builtin.group:
+    name: "{{ user_name }}"
+    state: present
+    system: true
+
+- name: Create tomcat user
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    group: "{{ user_name }}"
+    home: "{{ user_home }}"
+    shell: /sbin/nologin
+    state: present
+    system: true
+
+- name: Download and unarchive tarball tomcat
+  ansible.builtin.unarchive:
+    dest: "{{ user_home }}"
+    group: "{{ user_name }}"
+    owner: "{{ user_name }}"
+    remote_src: true
+    src: "{{ tomcat_url }}"
+    extra_opts:
+      - --strip-components=1
+
+- name: Download git repository for referencing
+  ansible.builtin.git:
+    dest: "{{ path_to_git }}"
+    repo: "{{ git_url }}"
+    version: main
+    clone: true
+    update: true

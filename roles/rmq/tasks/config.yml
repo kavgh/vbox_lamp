@@ -1,0 +1,6 @@
+- name: Configuration rabbitmq-serveer
+  ansible.builtin.template:
+    dest: /etc/rabbitmq/rabbitmq.config
+    owner: rabbitmq
+    group: rabbitmq
+    src: rabbitmq.conf.j2

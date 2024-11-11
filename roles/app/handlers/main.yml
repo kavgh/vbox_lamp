@@ -1,0 +1,9 @@
+- name: start tomcat
+  ansible.builtin.service:
+    name: tomcat
+    enabled: true
+    state: started
+
+- name: daemon reload
+  ansible.builtin.systemd_service:
+    daemon_reload: true

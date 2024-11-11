@@ -1,0 +1,7 @@
+- name: configure firewall
+  ansible.posix.firewalld:
+    immediate: true
+    permanent: true
+    zone: public
+    service: mysql
+    state: enabled

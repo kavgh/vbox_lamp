@@ -1,0 +1,9 @@
+upstream vproapp {
+    server app01:{{ app_port }};
+}
+server {
+    listen {{ lb_port }};
+    location / {
+        proxy_pass http://vproapp;
+    }
+}

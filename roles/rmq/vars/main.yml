@@ -1,0 +1,5 @@
+dependencies:
+  - epel-release
+  - wget
+  - centos-release-rabbitmq-38
+  - rabbitmq-server

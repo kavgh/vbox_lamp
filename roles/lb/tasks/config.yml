@@ -1,0 +1,15 @@
+- name: Create lb's configuration file
+  ansible.builtin.template:
+    dest: "{{ path_to_conf_file }}"
+    src: vproapp.j2
+
+- name: Remove default hosting web site
+  ansible.builtin.file:
+    state: absent
+    path: /etc/nginx/sites-enabled/default
+
+- name: Create link to lb configuration
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/vproapp
+    src: "{{ path_to_conf_file }}"
+    state: link

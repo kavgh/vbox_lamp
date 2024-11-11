@@ -1,0 +1,15 @@
+db_pass: admin123
+db_name: accounts
+db_user: admin
+path_to_project: /tmp/vprofile-project
+dependencies:
+  - epel-release
+  - git
+  - zip
+  - unzip
+  - mariadb-server
+  - pip
+queries:
+  - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
+  - DELETE FROM mysql.user WHERE User=''
+  - DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%'

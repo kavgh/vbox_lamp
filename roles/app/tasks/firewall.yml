@@ -1,0 +1,7 @@
+- name: Configure firewall
+  ansible.posix.firewalld:
+    permanent: true
+    immediate: true
+    port: 8080/tcp
+    zone: public
+    state: enabled

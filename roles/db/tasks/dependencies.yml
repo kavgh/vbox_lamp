@@ -1,0 +1,22 @@
+- name: install dependencies
+  ansible.builtin.dnf:
+    name: "{{ dependencies }}"
+    state: present
+    update_cache: true
+
+- name: install PyMySQL module
+  ansible.builtin.pip:
+    name: PyMySQL
+    state: present
+
+- name: start mariadb
+  ansible.builtin.service:
+    name: mariadb
+    enabled: true
+    state: started
+
+- name: clone vprofile-project
+  ansible.builtin.git:
+    clone: true
+    repo: https://github.com/hkhcoder/vprofile-project.git
+    dest: "{{ path_to_project }}"

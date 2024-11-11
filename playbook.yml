@@ -1,0 +1,19 @@
+- hosts: db
+  roles: 
+  - {role: db, become: true}
+
+- hosts: mc
+  roles: 
+  - {role: mc, become: true}
+
+- hosts: rmq
+  roles:
+  - {role: rmq, become: true}
+
+- hosts: app
+  roles:
+  - {role: app, become: true}
+
+- hosts: lb
+  roles:
+  - {role: lb, become: true}

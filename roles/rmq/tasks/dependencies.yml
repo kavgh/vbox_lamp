@@ -1,0 +1,12 @@
+- name: Install dependencies
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  loop: "{{ dependencies }}"
+
+- name: Start and enable rabbitmq-server
+  ansible.builtin.service:
+    name: rabbitmq-server
+    enabled: true
+    state: started

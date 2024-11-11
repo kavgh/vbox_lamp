@@ -1,0 +1,5 @@
+dependencies:
+  - nginx
+lb_port: 80
+app_port: 8080
+path_to_conf_file: /etc/nginx/sites-available/vproapp

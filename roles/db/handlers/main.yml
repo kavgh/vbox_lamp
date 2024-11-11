@@ -1,0 +1,11 @@
+- name: flush
+  community.mysql.mysql_query:
+    login_user: root
+    login_password: "{{ db_pass }}"
+    query: FLUSH PRIVILEGES
+    login_unix_socket: /var/lib/mysql/mysql.sock
+
+- name: restart mariadb
+  ansible.builtin.service:
+    name: mariadb
+    state: restated

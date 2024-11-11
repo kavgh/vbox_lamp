@@ -1,0 +1,30 @@
+- name: Configuration systemd service
+  ansible.builtin.template:
+    dest: /etc/systemd/system/tomcat.service
+    src: tomcat.service.j2
+  notify: daemon reload
+
+- name: Install the maven artifact
+  ansible.builtin.shell:
+    chdir: "{{ path_to_git }}"
+    cmd: mvn install
+
+- name: Get artifact name
+  ansible.builtin.find:
+    paths: "{{ path_to_git }}"
+    file_type: file
+    patterns: "*.war"
+    recurse: true
+    depth: 2
+  register: artifact
+
+- name: Remove the tomcat default application
+  ansible.builtin.file:
+    path: "{{ user_home }}/webapps/ROOT"
+    state: absent
+
+- name: Copy the maven artifact into tomcat as default application
+  ansible.builtin.copy:
+    dest: "{{ user_home }}/webapps/ROOT.war"
+    remote_src: true
+    src: "{{ artifact.files[0][\"path\"] }}"
