@@ -1,4 +1,4 @@
-This is project for deploying [VProfile](ttps://github.com/hkhcoder/vprofile-project) project using VirtualBox with Vagrant for Infrastructure as Code (IaC) and Ansible for provisioning.
+This is project for deploying [VProfile](https://github.com/hkhcoder/vprofile-project) project using VirtualBox with Vagrant for Infrastructure as Code (IaC) and Ansible for provisioning.
 
 # Infrastructure
 
